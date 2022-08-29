@@ -86,3 +86,8 @@ if (peaton){
 
 }
 ```
+
+# Seven display segment
+
+Usar esta libreria
+https://github.com/dgduncan/SevenSegment
