@@ -111,33 +111,33 @@ void loop()
   semaforo2(0, 1, 0, 0);
   semaforo3(1, 0, 0, 0);
   semaforo4(1, 0, 0, 0);
-  delay(1900);
+  delay(300);
 
   // Estado 4
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
-  semaforo3(1, 0, 0, 0);
+  semaforo3(0, 0, 0, 1);
   semaforo4(1, 0, 0, 0);
-  delay(1900);
+  delay(1200);
 
   // Estado 5
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
-  semaforo3(1, 0, 0, 0);
+  semaforo3(0, 1, 0, 0);
   semaforo4(1, 0, 0, 0);
-  delay(1900);
+  delay(300);
 
   // Estado 6
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
   semaforo3(1, 0, 0, 0);
-  semaforo4(1, 0, 0, 0);
-  delay(1900);
+  semaforo4(0, 0, 0, 1);
+  delay(1200);
 
   // Estado 7
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
   semaforo3(1, 0, 0, 0);
-  semaforo4(1, 0, 0, 0);
-  delay(1900);
+  semaforo4(0, 1, 0, 0);
+  delay(300);
 }
