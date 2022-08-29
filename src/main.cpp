@@ -1,51 +1,60 @@
 #include <Arduino.h>
 
-/**
- * @brief Clase que maneja un semaforo
- *
- *
- */
-template <int Leds>
-class Semaforo
+/*******Pin de los led*****************************/
+#define NUMBER_OF_LEDS 14
+#define S1P1 3
+#define S1P2 4
+#define S1P3 5
+#define S1P4 6
+#define S2P1 7
+#define S2P2 8
+#define S2P3 9
+#define S2P4 10
+#define S3P1 11
+#define S3P2 12
+#define S3P3 13
+#define S4P1 14
+#define S4P2 15
+#define S4P3 16
+/**************************************************/
+volatile bool peatonWantsToCross = false;
+
+#define INTERRUPBTNPIN 2
+
+void pressedPeatonBtn()
 {
+  peatonWantsToCross = true;
+}
 
-private:
-  /**
-   * @brief Pins of the leds
-   *
-   */
-  int *pins;
-
-public:
-  Semaforo(int *pins) : pins(pins) {}
-
-  /**
-   * @brief Sets the leds to a certain state
-   *
-   * @param highPins
-   */
-  void setState(int highPins[Leds])
-  {
-    for (size_t i = 0; i < Leds; i++)
-    {
-      digitalWrite(this->pins[i], highPins[i]);
-    }
-  }
+int pinLeds[NUMBER_OF_LEDS] = {
+    S1P1,
+    S1P2,
+    S1P3,
+    S1P4,
+    S2P1,
+    S2P2,
+    S2P3,
+    S2P4,
+    S3P1,
+    S3P2,
+    S3P3,
+    S4P1,
+    S4P2,
+    S4P3,
 };
 
-int semaforo1pins[] = {1, 2, 3, 4};
-int semaforo2pins[] = {1, 2, 3, 4};
-int semaforo3pins[] = {2, 3, 4};
-int semaforo4pins[] = {2, 3, 4};
-
-Semaforo<4> S1 = Semaforo<4>(semaforo1pins);
-Semaforo<4> S2 = Semaforo<4>(semaforo2pins);
-Semaforo<3> S3 = Semaforo<3>(semaforo3pins);
-Semaforo<3> S4 = Semaforo<3>(semaforo4pins);
+void initPins()
+{
+  for (size_t i = 0; i < NUMBER_OF_LEDS; i++)
+  {
+    pinMode(pinLeds[i], OUTPUT);
+  }
+}
 
 void setup()
 {
   // put your setup code here, to run once:
+  attachInterrupt(digitalPinToInterrupt(INTERRUPBTNPIN), pressedPeatonBtn, RISING);
 }
 
 void loop()
