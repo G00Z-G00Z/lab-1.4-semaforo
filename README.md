@@ -3,9 +3,9 @@
 El proyecto del primer parcial de lab de sistemas embebidos. A continuación, se
 presentan los requerimientos del proyecto.
 
-# Requerimientos 
+# Requerimientos
 
-## Funcionalidad 
+## Funcionalidad
 
 Este es un sistema de semaforos con 1 cruce peatonal. El sistema de semaforos
 es una maquina de estados y el cruce peatonal es una secuencia de interrupción.
@@ -14,40 +14,41 @@ es una maquina de estados y el cruce peatonal es una secuencia de interrupción.
 
 La maquina de estado se encuentra en el documento de las especificaiones.
 No hay inputs.
-Los output son las luces led de del semaforo. 
+Los output son las luces led de del semaforo.
 
 ### Cruce peatonal
 
 - Esta entre el semaforo 2 y semaforo 3
 - El peaton **no** puede alterar la secuencia actua
 - Cuando llega la luz verde **en el sentido vehicular que el peaton quiere
-cruzar**, y el peaton había **oprimido** el boton, se le da el **mismo tiempo
-que sería para la calle en ese sentido** para cruzar.
+  cruzar**, y el peaton había **oprimido** el boton, se le da el **mismo tiempo
+  que sería para la calle en ese sentido** para cruzar.
 - Si esta en verde y se presiona el cruce peatonal, no se debe otorgar el paso,
- si no hasta la siguiente vez.
-- Seria un boton para cada uno de los semaforos 
+  si no hasta la siguiente vez.
+- Seria un boton para cada uno de los semaforos
 
 Los inputs son los botones en los cruces. Los outputs son los displays de 7
 segmentos.
 
-Los estados que estan involucrados en este proceso son: 
+Los estados que estan involucrados en este proceso son:
 
-- 
-
+- E1
+- E2
+- E3
 
 ## Presentacion
 
-Los detalles de la presentacion son los siguientes: 
+Los detalles de la presentacion son los siguientes:
 
-- [ ]  Hacer presentacion
-    - [ ]  Front cover
-    - [ ]  Introduction
-    - [ ]  Development and solution
-        - [ ]  Control algorithm or strategy
-    - [ ]  hardware
-        - [ ]  lista de materiales
-    - [ ]  conclusiones
-- [ ]  demostracion
+- [ ] Hacer presentacion
+  - [ ] Front cover
+  - [ ] Introduction
+  - [ ] Development and solution
+    - [ ] Control algorithm or strategy
+  - [ ] hardware
+    - [ ] lista de materiales
+  - [ ] conclusiones
+- [ ] demostracion
 
 # Notas de implementacion
 
