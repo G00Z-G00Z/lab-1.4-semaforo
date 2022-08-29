@@ -51,6 +51,38 @@ void initPins()
   }
 }
 
+/*******Semaforos**********************************/
+void semaforo1(int p1, int p2, int p3, int p4)
+{
+  digitalWrite(S1P1, p1);
+  digitalWrite(S1P2, p2);
+  digitalWrite(S1P3, p3);
+  digitalWrite(S1P4, p4);
+}
+
+void semaforo2(int p1, int p2, int p3, int p4)
+{
+  digitalWrite(S2P1, p1);
+  digitalWrite(S2P2, p2);
+  digitalWrite(S2P3, p3);
+  digitalWrite(S2P4, p4);
+}
+
+void semaforo3(int p1, int p2, int p3, int p4)
+{
+  digitalWrite(S3P1, p1);
+  digitalWrite(S3P2, p2);
+  digitalWrite(S3P3, p3);
+}
+
+void semaforo4(int p1, int p2, int p3, int p4)
+{
+  digitalWrite(S4P1, p1);
+  digitalWrite(S4P2, p2);
+  digitalWrite(S4P3, p3);
+}
+/**************************************************/
+
 void setup()
 {
   // put your setup code here, to run once:
@@ -60,16 +92,52 @@ void setup()
 void loop()
 {
 
-  auto semaforo1 = [](int p1, int p2, int p3, int p4)
-  {
-    digitalWrite(1, p1);
-    digitalWrite(1, p2);
-    digitalWrite(1, p3);
-    digitalWrite(1, p4);
-  };
+  // Estado 1
+  semaforo1(1, 0, 1, 0);
+  semaforo2(1, 0, 1, 0);
+  semaforo3(1, 0, 0, 0);
+  semaforo4(1, 0, 0, 0);
+  delay(800);
 
-  while (true)
-  {
-    semaforo1(1, 0, 0, 1);
-  }
+  // Estado 2
+  semaforo1(0, 0, 0, 1);
+  semaforo2(0, 0, 0, 1);
+  semaforo3(1, 0, 0, 0);
+  semaforo4(1, 0, 0, 0);
+  delay(1900);
+
+  // Estado 3
+  semaforo1(0, 1, 0, 0);
+  semaforo2(0, 1, 0, 0);
+  semaforo3(1, 0, 0, 0);
+  semaforo4(1, 0, 0, 0);
+  delay(1900);
+
+  // Estado 4
+  semaforo1(1, 0, 0, 0);
+  semaforo2(1, 0, 0, 0);
+  semaforo3(1, 0, 0, 0);
+  semaforo4(1, 0, 0, 0);
+  delay(1900);
+
+  // Estado 5
+  semaforo1(1, 0, 0, 0);
+  semaforo2(1, 0, 0, 0);
+  semaforo3(1, 0, 0, 0);
+  semaforo4(1, 0, 0, 0);
+  delay(1900);
+
+  // Estado 6
+  semaforo1(1, 0, 0, 0);
+  semaforo2(1, 0, 0, 0);
+  semaforo3(1, 0, 0, 0);
+  semaforo4(1, 0, 0, 0);
+  delay(1900);
+
+  // Estado 7
+  semaforo1(1, 0, 0, 0);
+  semaforo2(1, 0, 0, 0);
+  semaforo3(1, 0, 0, 0);
+  semaforo4(1, 0, 0, 0);
+  delay(1900);
 }
