@@ -89,8 +89,24 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(INTERRUPBTNPIN), pressedPeatonBtn, RISING);
 }
 
+void waitForPeaton(int timeDelay)
+{
+  if (peatonWantsToCross)
+  {
+    // Semaforos afectados
+
+    // Display
+
+    delay(timeDelay);
+    peatonWantsToCross = false;
+  }
+}
+
 void loop()
 {
+
+  //
+  waitForPeaton(900);
 
   // Estado 1
   semaforo1(1, 0, 1, 0);
@@ -99,6 +115,7 @@ void loop()
   semaforo4(1, 0, 0, 0);
   delay(800);
 
+  waitForPeaton(1900);
   // Estado 2
   semaforo1(0, 0, 0, 1);
   semaforo2(0, 0, 0, 1);
@@ -106,6 +123,7 @@ void loop()
   semaforo4(1, 0, 0, 0);
   delay(1900);
 
+  waitForPeaton(300);
   // Estado 3
   semaforo1(0, 1, 0, 0);
   semaforo2(0, 1, 0, 0);
