@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <SegmentDisplay.h>
 
 /*******Pin de los led*****************************/
 #define NUMBER_OF_LEDS 14
@@ -83,6 +82,13 @@ void semaforo4(int p1, int p2, int p3, int p4)
   digitalWrite(S4P3, p3);
 }
 /**************************************************/
+
+void setup()
+{
+  // put your setup code here, to run once:
+  attachInterrupt(digitalPinToInterrupt(INTERRUPBTNPIN), pressedPeatonBtn, RISING);
+}
+
 void waitForPeaton(int timeDelay)
 {
   if (peatonWantsToCross)
@@ -94,14 +100,6 @@ void waitForPeaton(int timeDelay)
     delay(timeDelay);
     peatonWantsToCross = false;
   }
-}
-
-SegmentDisplay segmentDisplay(2, 3, 4, 5, 6, 7, 8, 9);
-
-void setup()
-{
-  // put your setup code here, to run once:
-  attachInterrupt(digitalPinToInterrupt(INTERRUPBTNPIN), pressedPeatonBtn, RISING);
 }
 
 void loop()
