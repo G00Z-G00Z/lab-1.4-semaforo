@@ -272,7 +272,7 @@ void loop()
 {
 
   //
-  waitForPeaton(1000);
+  waitForPeaton(8000);
 
   // Estado 1
   printState(1);
@@ -280,16 +280,16 @@ void loop()
   semaforo2(1, 0, 1, 0);
   semaforo3(1, 0, 0, 0);
   semaforo4(1, 0, 0, 0);
-  delay(800);
+  delay(8000);
 
-  waitForPeaton(2000);
+  waitForPeaton(8000);
   // Estado 2
   printState(2);
   semaforo1(0, 0, 0, 1);
   semaforo2(0, 0, 0, 1);
   semaforo3(1, 0, 0, 0);
   semaforo4(1, 0, 0, 0);
-  delay(1900);
+  delay(19000);
 
   waitForPeaton(8000);
 
@@ -299,7 +299,7 @@ void loop()
   semaforo2(0, 1, 0, 0);
   semaforo3(1, 0, 0, 0);
   semaforo4(1, 0, 0, 0);
-  delay(300);
+  delay(3000);
 
   // Estado 4
   printState(4);
@@ -307,7 +307,7 @@ void loop()
   semaforo2(1, 0, 0, 0);
   semaforo3(0, 0, 0, 1);
   semaforo4(1, 0, 0, 0);
-  delay(1200);
+  delay(12000);
 
   // Estado 5
   printState(5);
@@ -315,7 +315,7 @@ void loop()
   semaforo2(1, 0, 0, 0);
   semaforo3(0, 1, 0, 0);
   semaforo4(1, 0, 0, 0);
-  delay(300);
+  delay(3000);
 
   // Estado 6
   printState(6);
@@ -323,7 +323,7 @@ void loop()
   semaforo2(1, 0, 0, 0);
   semaforo3(1, 0, 0, 0);
   semaforo4(0, 0, 0, 1);
-  delay(1200);
+  delay(12000);
 
   // Estado 7
   printState(7);
@@ -331,5 +331,5 @@ void loop()
   semaforo2(1, 0, 0, 0);
   semaforo3(1, 0, 0, 0);
   semaforo4(0, 1, 0, 0);
-  delay(300);
+  delay(3000);
 }
