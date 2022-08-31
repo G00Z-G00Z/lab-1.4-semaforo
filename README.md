@@ -86,3 +86,9 @@ if (peaton){
 
 }
 ```
+
+# 7 Display
+
+Taken from [official documentation](https://github.com/DeanIsMe/SevSeg)
+
+- Cathode (negative pins)
