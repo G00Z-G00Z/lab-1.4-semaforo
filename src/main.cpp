@@ -191,7 +191,7 @@ void semaforo3(int p1, int p2, int p3, int p4)
 {
   digitalWrite(S3P1, p1);
   digitalWrite(S3P2, p2);
-  digitalWrite(S3P3, p3);
+  digitalWrite(S3P3, p4);
   printSemaforoState(3, p1, p2, p3, p4);
 }
 
@@ -199,7 +199,7 @@ void semaforo4(int p1, int p2, int p3, int p4)
 {
   digitalWrite(S4P1, p1);
   digitalWrite(S4P2, p2);
-  digitalWrite(S4P3, p3);
+  digitalWrite(S4P3, p4);
   printSemaforoState(4, p1, p2, p3, p4);
 }
 /**************************************************/
@@ -243,7 +243,7 @@ void waitForPeaton(int timeDelay_ms)
   {
     setNumberDisplay(i);
     Serial.print("Quedan: ");
-    Serial.print(secs);
+    Serial.print(i);
     Serial.println(" segundos");
     delay(1000);
   }
