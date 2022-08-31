@@ -18,16 +18,29 @@
 #define S4P2 39
 #define S4P3 41
 /**************************************************/
+
+/**
+ * @brief Variable that registers when a persons clicks the button.
+ *
+ */
 volatile bool peatonWantsToCross = false;
 
 #define INTERRUPBTNPIN 19
 
+/**
+ * @brief IRS that handles when user presses the button
+ *
+ */
 void pressedPeatonBtn()
 {
-  peatonWantsToCross = true;
   Serial.println("Peaton: true");
+  peatonWantsToCross = true;
 }
 
+/**
+ * @brief Array with all the pins that have leds
+ *
+ */
 int pinLeds[NUMBER_OF_LEDS] = {
     S1P1,
     S1P2,
@@ -45,6 +58,10 @@ int pinLeds[NUMBER_OF_LEDS] = {
     S4P3,
 };
 
+/**
+ * @brief Funcition that initializes the pins.
+ *
+ */
 void initPins()
 {
   for (size_t i = 0; i < NUMBER_OF_LEDS; i++)
@@ -53,6 +70,15 @@ void initPins()
   }
 }
 
+/**
+ * @brief Takes the semaforo number and the state of each of its lights
+ *
+ * @param semaforoNo
+ * @param p1 Red
+ * @param p2 Yellow
+ * @param p3 Turn
+ * @param p4 Green
+ */
 void printSemaforoState(int semaforoNo, int p1, int p2, int p3, int p4)
 {
   Serial.print("S");
@@ -65,7 +91,17 @@ void printSemaforoState(int semaforoNo, int p1, int p2, int p3, int p4)
   Serial.println();
 }
 
-/*******Semaforos**********************************/
+/*******Traffic light functions********************/
+
+/**
+ * @brief Sets the state of the traffic light
+ *
+ * @param p1 Red
+ * @param p2 Yellow
+ * @param p3 Turn
+ * @param p4 Green
+ */
+
 void semaforo1(int p1, int p2, int p3, int p4)
 {
   digitalWrite(S1P1, p1);
@@ -103,14 +139,15 @@ void semaforo4(int p1, int p2, int p3, int p4)
 
 /*****Seven segment display************************/
 
+/**
+ * @brief Seven segment element
+ *
+ */
 SevSeg sevseg;
 
-/**************************************************/
-
-void setup()
+void initSevenSegment()
 {
 
-  Serial.begin(9600);
   byte numDigits = 1;
   // todo: checar digit pins
   byte digitPins[] = {3};
@@ -120,22 +157,38 @@ void setup()
   bool updateWithDelays = false;      // Default 'false' is Recommended
   bool leadingZeros = false;          // Use 'true' if you'd like to keep the leading zeros
   bool disableDecPoint = true;        // Use 'true' if your decimal point doesn't exist or isn't connected
-
   sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments,
                updateWithDelays, leadingZeros, disableDecPoint);
   sevseg.setBrightness(90);
-
-  // put your setup code here, to run once:
-  attachInterrupt(digitalPinToInterrupt(INTERRUPBTNPIN), pressedPeatonBtn, RISING);
-
-  Serial.println("Comenzando el semaforo!!");
 }
 
+/**************************************************/
+
+void setup()
+{
+
+  Serial.begin(9600);
+
+  // IRS
+  attachInterrupt(digitalPinToInterrupt(INTERRUPBTNPIN), pressedPeatonBtn, RISING);
+
+  // Leds
+  initPins();
+  // Display
+  initSevenSegment();
+
+  Serial.println("Trafic lights!");
+}
+
+/**
+ * @brief Uses the sevseg display to display a count down
+ *
+ * @param sevseg Seven display segment
+ * @param delay_ms Delay, cannot be larger that 16 secs
+ */
 void counterDisplay(SevSeg &sevseg, int delay_ms)
 {
   long timer = millis();
-
-  // Delay millis
   int deciSeconds = delay_ms / 1000;
 
   sevseg.setNumber(deciSeconds, 0);
@@ -159,7 +212,13 @@ void counterDisplay(SevSeg &sevseg, int delay_ms)
   return;
 }
 
-void waitForPeaton(int timeDelay)
+/**
+ * @brief Checks if a peaton wants to cross, and if it wants to, it runs a
+ * rutine.
+ *
+ * @param timeDelay_ms
+ */
+void waitForPeaton(int timeDelay_ms)
 {
   if (peatonWantsToCross)
   {
@@ -167,13 +226,18 @@ void waitForPeaton(int timeDelay)
     // Semaforos afectados
 
     // Display
-    // counterDisplay(sevseg, timeDelay);
-    delay(1000);
+    // counterDisplay(sevseg, timeDelay_ms);
+    delay(timeDelay_ms);
 
     peatonWantsToCross = false;
   }
 }
 
+/**
+ * @brief Prints the state of the traffic lights
+ *
+ * @param stateNo
+ */
 void printState(int stateNo)
 {
   Serial.println("Estado 1");
