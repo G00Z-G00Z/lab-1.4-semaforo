@@ -52,6 +52,18 @@ void initPins()
   }
 }
 
+void printSemaforoState(int semaforoNo, int p1, int p2, int p3, int p4)
+{
+  Serial.print("S");
+  Serial.print(semaforoNo);
+  Serial.print(": ");
+  Serial.print(p1);
+  Serial.print(p2);
+  Serial.print(p3);
+  Serial.print(p4);
+  Serial.println();
+}
+
 /*******Semaforos**********************************/
 void semaforo1(int p1, int p2, int p3, int p4)
 {
@@ -59,6 +71,7 @@ void semaforo1(int p1, int p2, int p3, int p4)
   digitalWrite(S1P2, p2);
   digitalWrite(S1P3, p3);
   digitalWrite(S1P4, p4);
+  printSemaforoState(1, p1, p2, p3, p4);
 }
 
 void semaforo2(int p1, int p2, int p3, int p4)
@@ -67,6 +80,7 @@ void semaforo2(int p1, int p2, int p3, int p4)
   digitalWrite(S2P2, p2);
   digitalWrite(S2P3, p3);
   digitalWrite(S2P4, p4);
+  printSemaforoState(2, p1, p2, p3, p4);
 }
 
 void semaforo3(int p1, int p2, int p3, int p4)
@@ -74,6 +88,7 @@ void semaforo3(int p1, int p2, int p3, int p4)
   digitalWrite(S3P1, p1);
   digitalWrite(S3P2, p2);
   digitalWrite(S3P3, p3);
+  printSemaforoState(3, p1, p2, p3, p4);
 }
 
 void semaforo4(int p1, int p2, int p3, int p4)
@@ -81,6 +96,7 @@ void semaforo4(int p1, int p2, int p3, int p4)
   digitalWrite(S4P1, p1);
   digitalWrite(S4P2, p2);
   digitalWrite(S4P3, p3);
+  printSemaforoState(4, p1, p2, p3, p4);
 }
 /**************************************************/
 
@@ -163,6 +179,7 @@ void loop()
   waitForPeaton(900);
 
   // Estado 1
+  Serial.println("Estado 1");
   semaforo1(1, 0, 1, 0);
   semaforo2(1, 0, 1, 0);
   semaforo3(1, 0, 0, 0);
@@ -171,6 +188,7 @@ void loop()
 
   waitForPeaton(1900);
   // Estado 2
+  Serial.println("Estado 2");
   semaforo1(0, 0, 0, 1);
   semaforo2(0, 0, 0, 1);
   semaforo3(1, 0, 0, 0);
@@ -179,6 +197,7 @@ void loop()
 
   waitForPeaton(300);
   // Estado 3
+  Serial.println("Estado 3");
   semaforo1(0, 1, 0, 0);
   semaforo2(0, 1, 0, 0);
   semaforo3(1, 0, 0, 0);
@@ -186,6 +205,7 @@ void loop()
   delay(300);
 
   // Estado 4
+  Serial.println("Estado 4");
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
   semaforo3(0, 0, 0, 1);
@@ -193,6 +213,7 @@ void loop()
   delay(1200);
 
   // Estado 5
+  Serial.println("Estado 5");
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
   semaforo3(0, 1, 0, 0);
@@ -200,6 +221,7 @@ void loop()
   delay(300);
 
   // Estado 6
+  Serial.println("Estado 6");
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
   semaforo3(1, 0, 0, 0);
@@ -207,6 +229,7 @@ void loop()
   delay(1200);
 
   // Estado 7
+  Serial.println("Estado 7");
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
   semaforo3(1, 0, 0, 0);
