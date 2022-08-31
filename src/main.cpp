@@ -3,24 +3,24 @@
 
 /*******Pin de los led*****************************/
 #define NUMBER_OF_LEDS 14
-#define S1P1 3
-#define S1P2 4
-#define S1P3 5
-#define S1P4 6
-#define S2P1 7
-#define S2P2 8
-#define S2P3 9
-#define S2P4 10
-#define S3P1 11
-#define S3P2 12
-#define S3P3 13
-#define S4P1 14
-#define S4P2 15
-#define S4P3 16
+#define S1P1 23
+#define S1P2 25
+#define S1P3 27
+#define S1P4 29
+#define S2P1 49
+#define S2P2 47
+#define S2P3 45
+#define S2P4 43
+#define S3P1 31
+#define S3P2 33
+#define S3P3 35
+#define S4P1 37
+#define S4P2 39
+#define S4P3 41
 /**************************************************/
 volatile bool peatonWantsToCross = false;
 
-#define INTERRUPBTNPIN 2
+#define INTERRUPBTNPIN 19
 
 void pressedPeatonBtn()
 {
@@ -93,6 +93,7 @@ SevSeg sevseg;
 void setup()
 {
 
+  Serial.begin(9600);
   byte numDigits = 1;
   // todo: checar digit pins
   byte digitPins[] = {3};
@@ -109,6 +110,8 @@ void setup()
 
   // put your setup code here, to run once:
   attachInterrupt(digitalPinToInterrupt(INTERRUPBTNPIN), pressedPeatonBtn, RISING);
+
+  Serial.println("Comenzando el semaforo!!");
 }
 
 void counterDisplay(SevSeg &sevseg, int delay_ms)
