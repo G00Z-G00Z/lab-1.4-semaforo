@@ -30,6 +30,55 @@
 /**************************************************/
 
 /**
+ * @brief Array with the values of the display
+ *
+ */
+int displayNumArray[10][7] = {{1, 1, 1, 1, 1, 1, 0},  // 0
+                              {0, 1, 1, 0, 0, 0, 0},  // 1
+                              {1, 1, 0, 1, 1, 0, 1},  // 2
+                              {1, 1, 1, 1, 0, 0, 1},  // 3
+                              {0, 1, 1, 0, 0, 1, 1},  // 4
+                              {1, 0, 1, 1, 0, 1, 1},  // 5
+                              {1, 0, 1, 1, 1, 1, 1},  // 6
+                              {1, 1, 1, 0, 0, 0, 0},  // 7
+                              {1, 1, 1, 1, 1, 1, 1},  // 8
+                              {1, 1, 1, 0, 0, 1, 1}}; // 9
+
+/**
+ * @brief Array of the pins of the display
+ *
+ */
+int displayPinArray[7] = {
+    DISA,
+    DISB,
+    DISC,
+    DISD,
+    DISE,
+    DISF,
+    DISG,
+};
+
+/**
+ * @brief Set the Number Display object
+ *
+ * @param n
+ */
+void setNumberDisplay(int n)
+{
+
+  if (n < 0 || n > 9)
+  {
+    setNumberDisplay(0);
+    return;
+  }
+
+  for (size_t i = 0; i < 7; i++)
+  {
+    digitalWrite(displayPinArray[i], displayNumArray[n][i]);
+  }
+}
+
+/**
  * @brief Variable that registers when a persons clicks the button.
  *
  */
@@ -74,6 +123,12 @@ int pinLeds[NUMBER_OF_LEDS] = {
  */
 void initPins()
 {
+  // Display segments
+  for (size_t i = 0; i < 7; i++)
+  {
+    pinMode(displayPinArray[i], OUTPUT);
+  }
+  // Leds
   for (size_t i = 0; i < NUMBER_OF_LEDS; i++)
   {
     pinMode(pinLeds[i], OUTPUT);
