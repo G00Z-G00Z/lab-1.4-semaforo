@@ -25,6 +25,7 @@ volatile bool peatonWantsToCross = false;
 void pressedPeatonBtn()
 {
   peatonWantsToCross = true;
+  Serial.println("Peaton: true");
 }
 
 int pinLeds[NUMBER_OF_LEDS] = {
@@ -162,12 +163,13 @@ void waitForPeaton(int timeDelay)
 {
   if (peatonWantsToCross)
   {
+    Serial.println("Peaton cruzando");
     // Semaforos afectados
 
     // Display
-    counterDisplay(sevseg, timeDelay);
+    // counterDisplay(sevseg, timeDelay);
+    delay(1000);
 
-    delay(timeDelay);
     peatonWantsToCross = false;
   }
 }
