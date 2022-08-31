@@ -19,7 +19,7 @@
 /**************************************************/
 
 /***Pins de los segmentos**************************/
-
+#define MAX_WAITING_NUMBER 19
 #define DISA 13
 #define DISB 12
 #define DISC 11
@@ -33,16 +33,17 @@
  * @brief Array with the values of the display
  *
  */
-int displayNumArray[10][7] = {{1, 1, 1, 1, 1, 1, 0},  // 0
-                              {0, 1, 1, 0, 0, 0, 0},  // 1
-                              {1, 1, 0, 1, 1, 0, 1},  // 2
-                              {1, 1, 1, 1, 0, 0, 1},  // 3
-                              {0, 1, 1, 0, 0, 1, 1},  // 4
-                              {1, 0, 1, 1, 0, 1, 1},  // 5
-                              {1, 0, 1, 1, 1, 1, 1},  // 6
-                              {1, 1, 1, 0, 0, 0, 0},  // 7
-                              {1, 1, 1, 1, 1, 1, 1},  // 8
-                              {1, 1, 1, 0, 0, 1, 1}}; // 9
+int displayNumArray[MAX_WAITING_NUMBER][7] = {
+    {1, 1, 1, 1, 1, 1, 0},  // 0
+    {0, 1, 1, 0, 0, 0, 0},  // 1
+    {1, 1, 0, 1, 1, 0, 1},  // 2
+    {1, 1, 1, 1, 0, 0, 1},  // 3
+    {0, 1, 1, 0, 0, 1, 1},  // 4
+    {1, 0, 1, 1, 0, 1, 1},  // 5
+    {1, 0, 1, 1, 1, 1, 1},  // 6
+    {1, 1, 1, 0, 0, 0, 0},  // 7
+    {1, 1, 1, 1, 1, 1, 1},  // 8
+    {1, 1, 1, 0, 0, 1, 1}}; // 9
 
 /**
  * @brief Array of the pins of the display
@@ -59,18 +60,12 @@ int displayPinArray[7] = {
 };
 
 /**
- * @brief Set the Number Display object
+ * @brief Set the Number Display object. Only put numbers [0, MAX_NUMBER_ARRAY]
  *
  * @param n
  */
 void setNumberDisplay(int n)
 {
-
-  if (n < 0 || n > 9)
-  {
-    setNumberDisplay(0);
-    return;
-  }
 
   for (size_t i = 0; i < 7; i++)
   {
