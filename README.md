@@ -91,3 +91,9 @@ if (peaton){
 
 Usar esta libreria
 https://github.com/dgduncan/SevenSegment
+=======
+# 7 Display
+
+Taken from [official documentation](https://github.com/DeanIsMe/SevSeg)
+
+- Cathode (negative pins)
