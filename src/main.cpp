@@ -240,7 +240,8 @@ void waitForPeaton(int timeDelay_ms)
  */
 void printState(int stateNo)
 {
-  Serial.println("Estado 1");
+  Serial.print("Estado: ");
+  Serial.println(stateNo);
   Serial.print("Peaton: ");
   Serial.println(peatonWantsToCross);
 }
@@ -269,6 +270,7 @@ void loop()
   delay(1900);
 
   waitForPeaton(300);
+
   // Estado 3
   printState(3);
   semaforo1(0, 1, 0, 0);
