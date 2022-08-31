@@ -172,6 +172,13 @@ void waitForPeaton(int timeDelay)
   }
 }
 
+void printState(int stateNo)
+{
+  Serial.println("Estado 1");
+  Serial.print("Peaton: ");
+  Serial.println(peatonWantsToCross);
+}
+
 void loop()
 {
 
@@ -179,7 +186,7 @@ void loop()
   waitForPeaton(900);
 
   // Estado 1
-  Serial.println("Estado 1");
+  printState(1);
   semaforo1(1, 0, 1, 0);
   semaforo2(1, 0, 1, 0);
   semaforo3(1, 0, 0, 0);
@@ -188,7 +195,7 @@ void loop()
 
   waitForPeaton(1900);
   // Estado 2
-  Serial.println("Estado 2");
+  printState(2);
   semaforo1(0, 0, 0, 1);
   semaforo2(0, 0, 0, 1);
   semaforo3(1, 0, 0, 0);
@@ -197,7 +204,7 @@ void loop()
 
   waitForPeaton(300);
   // Estado 3
-  Serial.println("Estado 3");
+  printState(3);
   semaforo1(0, 1, 0, 0);
   semaforo2(0, 1, 0, 0);
   semaforo3(1, 0, 0, 0);
@@ -205,7 +212,7 @@ void loop()
   delay(300);
 
   // Estado 4
-  Serial.println("Estado 4");
+  printState(4);
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
   semaforo3(0, 0, 0, 1);
@@ -213,7 +220,7 @@ void loop()
   delay(1200);
 
   // Estado 5
-  Serial.println("Estado 5");
+  printState(5);
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
   semaforo3(0, 1, 0, 0);
@@ -221,7 +228,7 @@ void loop()
   delay(300);
 
   // Estado 6
-  Serial.println("Estado 6");
+  printState(6);
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
   semaforo3(1, 0, 0, 0);
@@ -229,7 +236,7 @@ void loop()
   delay(1200);
 
   // Estado 7
-  Serial.println("Estado 7");
+  printState(7);
   semaforo1(1, 0, 0, 0);
   semaforo2(1, 0, 0, 0);
   semaforo3(1, 0, 0, 0);
