@@ -179,6 +179,7 @@ void initSevenSegment()
   sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments,
                updateWithDelays, leadingZeros, disableDecPoint);
   sevseg.setBrightness(90);
+  sevseg.setNumber(0);
 }
 
 /**************************************************/
@@ -197,6 +198,7 @@ void setup()
   initSevenSegment();
 
   Serial.println("Trafic lights!");
+  sevseg.blank();
 }
 
 /**
@@ -210,7 +212,7 @@ void counterDisplay(SevSeg &sevseg, int delay_ms)
   long timer = millis();
   int deciSeconds = delay_ms / 1000;
 
-  sevseg.setNumber(deciSeconds, 0);
+  sevseg.setNumber(deciSeconds);
 
   do
   {
@@ -218,10 +220,12 @@ void counterDisplay(SevSeg &sevseg, int delay_ms)
     {
       timer += 1000;
       deciSeconds--; // Substract deciseconds
-      sevseg.setNumber(deciSeconds, 0);
+      Serial.print("Quedan: ");
+      Serial.print(deciSeconds);
+      Serial.println(" segundos");
+      sevseg.setNumber(deciSeconds);
+      sevseg.refreshDisplay(); // Must run repeatedly
     }
-
-    sevseg.refreshDisplay(); // Must run repeatedly
 
   } while (deciSeconds != 0);
 
