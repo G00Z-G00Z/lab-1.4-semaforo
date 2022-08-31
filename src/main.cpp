@@ -19,6 +19,17 @@
 #define S4P3 41
 /**************************************************/
 
+/***Pins de los segmentos**************************/
+
+#define DISA 13
+#define DISB 12
+#define DISC 11
+#define DISD 10
+#define DISE 9
+#define DISF 8
+#define DISG 7
+/**************************************************/
+
 /**
  * @brief Variable that registers when a persons clicks the button.
  *
