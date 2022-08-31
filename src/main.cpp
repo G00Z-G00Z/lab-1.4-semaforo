@@ -221,34 +221,6 @@ void setup()
 }
 
 /**
- * @brief Uses the sevseg display to display a count down
- *
- * @param sevseg Seven display segment
- * @param delay_ms Delay, cannot be larger that 16 secs
- */
-void counterDisplay(int delay_ms)
-{
-  long timer = millis();
-  int deciSeconds = delay_ms / 1000;
-
-  do
-  {
-    if (millis() - timer >= 1000)
-    {
-      timer += 1000;
-      deciSeconds--; // Substract deciseconds
-      Serial.print("Quedan: ");
-      Serial.print(deciSeconds);
-      Serial.println(" segundos");
-    }
-
-  } while (deciSeconds != 0);
-
-  // Stop the sequence after
-  return;
-}
-
-/**
  * @brief Checks if a peaton wants to cross, and if it wants to, it runs a
  * rutine.
  *
@@ -256,13 +228,25 @@ void counterDisplay(int delay_ms)
  */
 void waitForPeaton(int timeDelay_ms)
 {
-  if (peatonWantsToCross)
-  {
-    Serial.println("Peaton cruzando");
-    // Semaforos afectados
 
-    peatonWantsToCross = false;
+  if (!peatonWantsToCross)
+    return;
+
+  int secs = timeDelay_ms / 1000;
+
+  Serial.println("Peaton cruzando");
+
+  // loop display
+  for (int i = secs; i >= 0; i--)
+  {
+    setNumberDisplay(i);
+    Serial.print("Quedan: ");
+    Serial.print(secs);
+    Serial.println(" segundos");
+    delay(1000);
   }
+
+  peatonWantsToCross = false;
 }
 
 /**
