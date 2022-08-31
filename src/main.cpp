@@ -161,8 +161,16 @@ void initSevenSegment()
 
   byte numDigits = 1;
   // todo: checar digit pins
-  byte digitPins[] = {3};
-  byte segmentPins[] = {6, 7, 8, 9, 10, 11, 12, 13};
+  byte digitPins[] = {5};
+  byte segmentPins[] = {
+      DISA,
+      DISB,
+      DISC,
+      DISD,
+      DISE,
+      DISF,
+      DISG,
+  };
   bool resistorsOnSegments = false;   // 'false' means resistors are on digit pins
   byte hardwareConfig = COMMON_ANODE; // See README.md for options
   bool updateWithDelays = false;      // Default 'false' is Recommended
@@ -237,8 +245,7 @@ void waitForPeaton(int timeDelay_ms)
     // Semaforos afectados
 
     // Display
-    // counterDisplay(sevseg, timeDelay_ms);
-    delay(timeDelay_ms);
+    counterDisplay(sevseg, timeDelay_ms);
 
     peatonWantsToCross = false;
   }
@@ -261,7 +268,7 @@ void loop()
 {
 
   //
-  waitForPeaton(900);
+  waitForPeaton(1000);
 
   // Estado 1
   printState(1);
@@ -271,7 +278,7 @@ void loop()
   semaforo4(1, 0, 0, 0);
   delay(800);
 
-  waitForPeaton(1900);
+  waitForPeaton(2000);
   // Estado 2
   printState(2);
   semaforo1(0, 0, 0, 1);
@@ -280,7 +287,7 @@ void loop()
   semaforo4(1, 0, 0, 0);
   delay(1900);
 
-  waitForPeaton(300);
+  waitForPeaton(8000);
 
   // Estado 3
   printState(3);
