@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <SevSeg.h>
 
 /*******Pin de los led*****************************/
 #define NUMBER_OF_LEDS 14
@@ -83,10 +84,59 @@ void semaforo4(int p1, int p2, int p3, int p4)
 }
 /**************************************************/
 
+/*****Seven segment display************************/
+
+SevSeg sevseg;
+
+/**************************************************/
+
 void setup()
 {
+
+  byte numDigits = 1;
+  // todo: checar digit pins
+  byte digitPins[] = {3};
+  byte segmentPins[] = {6, 7, 8, 9, 10, 11, 12, 13};
+  bool resistorsOnSegments = false;   // 'false' means resistors are on digit pins
+  byte hardwareConfig = COMMON_ANODE; // See README.md for options
+  bool updateWithDelays = false;      // Default 'false' is Recommended
+  bool leadingZeros = false;          // Use 'true' if you'd like to keep the leading zeros
+  bool disableDecPoint = true;        // Use 'true' if your decimal point doesn't exist or isn't connected
+
+  sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments,
+               updateWithDelays, leadingZeros, disableDecPoint);
+  sevseg.setBrightness(90);
+
   // put your setup code here, to run once:
   attachInterrupt(digitalPinToInterrupt(INTERRUPBTNPIN), pressedPeatonBtn, RISING);
+}
+
+void counterDisplay(SevSeg &sevseg, int delay_ms)
+{
+  long timer = millis();
+
+  // Delay millis
+  int deciSeconds = delay_ms / 1000;
+
+  sevseg.setNumber(deciSeconds, 0);
+
+  do
+  {
+    if (millis() - timer >= 1000)
+    {
+      timer += 1000;
+      deciSeconds--; // Substract deciseconds
+      sevseg.setNumber(deciSeconds, 0);
+    }
+
+    sevseg.refreshDisplay(); // Must run repeatedly
+
+  } while (deciSeconds != 0);
+
+  // Stop the sequence after
+  sevseg.blank();
+  sevseg.refreshDisplay();
+  return;
 }
 
 void waitForPeaton(int timeDelay)
@@ -96,6 +146,7 @@ void waitForPeaton(int timeDelay)
     // Semaforos afectados
 
     // Display
+    counterDisplay(sevseg, timeDelay);
 
     delay(timeDelay);
     peatonWantsToCross = false;
