@@ -33,7 +33,7 @@
  * @brief Array with the values of the display
  *
  */
-int displayNumArray[MAX_WAITING_NUMBER][7] = {
+int displayNumArray[MAX_WAITING_NUMBER + 1][7] = {
     {1, 1, 1, 1, 1, 1, 0}, // 0
     {0, 1, 1, 0, 0, 0, 0}, // 1
     {1, 1, 0, 1, 1, 0, 1}, // 2
@@ -50,6 +50,10 @@ int displayNumArray[MAX_WAITING_NUMBER][7] = {
     {0, 1, 1, 1, 1, 0, 1}, // d (13)
     {1, 0, 0, 1, 1, 1, 1}, // E (14)
     {1, 0, 0, 0, 1, 1, 1}, // F (15)
+    {1, 0, 1, 1, 1, 1, 0}, // G (16)
+    {0, 1, 1, 0, 1, 1, 1}, // H (17)
+    {0, 0, 0, 0, 1, 0, 0}, // I (18)
+    {0, 0, 0, 1, 1, 1, 0}, // L (19)
 };
 // ghik
 /**
@@ -267,7 +271,6 @@ void printState(int stateNo)
 void loop()
 {
 
-  //
   waitForPeaton(8000);
 
   // Estado 1
@@ -278,8 +281,7 @@ void loop()
   semaforo4(1, 0, 0, 0);
   delay(8000);
 
-  // should be 19
-  waitForPeaton(15000);
+  waitForPeaton(19000);
 
   // Estado 2
   printState(2);
@@ -287,7 +289,7 @@ void loop()
   semaforo2(0, 0, 0, 1);
   semaforo3(1, 0, 0, 0);
   semaforo4(1, 0, 0, 0);
-  delay(15000);
+  delay(19000);
 
   waitForPeaton(3000);
 
